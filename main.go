@@ -4,8 +4,8 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 
-	"github.com/rbnacharya/trafficinsights-go/internal/controller"
-	"github.com/rbnacharya/trafficinsights-go/internal/core"
+	"github.com/rbnacharya/goinsights/internal/controller"
+	"github.com/rbnacharya/goinsights/internal/core"
 
 	_ "github.com/lib/pq"
 )

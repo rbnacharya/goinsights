@@ -2,7 +2,7 @@ package validation
 
 import (
 	"github.com/labstack/echo/v4"
-	"github.com/rbnacharya/trafficinsights-go/internal/service/register"
+	"github.com/rbnacharya/goinsights/internal/service/register"
 )
 
 type RegisterValidation struct {

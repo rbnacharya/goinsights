@@ -1,6 +1,6 @@
 package validation
 
-import ipuablacklist "github.com/rbnacharya/trafficinsights-go/internal/core/models/ip_ua_blacklist"
+import ipuablacklist "github.com/rbnacharya/goinsights/internal/core/models/ip_ua_blacklist"
 
 func (ctrl Validate) ValidateIPBlacklist(ipAddress string) bool {
 	// Check if IP address is in blacklist

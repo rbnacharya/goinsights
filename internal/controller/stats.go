@@ -2,9 +2,9 @@ package controller
 
 import (
 	"github.com/labstack/echo/v4"
-	hourlystats "github.com/rbnacharya/trafficinsights-go/internal/core/models/hourly_stats"
-	"github.com/rbnacharya/trafficinsights-go/internal/errors"
-	"github.com/rbnacharya/trafficinsights-go/internal/service/stats"
+	hourlystats "github.com/rbnacharya/goinsights/internal/core/models/hourly_stats"
+	"github.com/rbnacharya/goinsights/internal/errors"
+	"github.com/rbnacharya/goinsights/internal/service/stats"
 )
 
 func (ctrl Controllers) FetchStats(ec echo.Context) error {

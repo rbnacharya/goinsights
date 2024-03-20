@@ -5,9 +5,9 @@ import (
 
 	"github.com/labstack/echo/v4"
 
-	hourlystats "github.com/rbnacharya/trafficinsights-go/internal/core/models/hourly_stats"
-	"github.com/rbnacharya/trafficinsights-go/internal/errors"
-	"github.com/rbnacharya/trafficinsights-go/internal/service/register/validation"
+	hourlystats "github.com/rbnacharya/goinsights/internal/core/models/hourly_stats"
+	"github.com/rbnacharya/goinsights/internal/errors"
+	"github.com/rbnacharya/goinsights/internal/service/register/validation"
 )
 
 func (ctrl Controllers) RegisterClick(ec echo.Context) error {

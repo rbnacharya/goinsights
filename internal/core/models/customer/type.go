@@ -1,6 +1,6 @@
 package customer
 
-import "github.com/rbnacharya/trafficinsights-go/internal/core"
+import "github.com/rbnacharya/goinsights/internal/core"
 
 type CustomerRepository struct {
 	Global *core.Global

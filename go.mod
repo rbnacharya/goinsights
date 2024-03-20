@@ -1,4 +1,4 @@
-module github.com/rbnacharya/trafficinsights-go
+module github.com/rbnacharya/goinsights
 
 go 1.22.1
 

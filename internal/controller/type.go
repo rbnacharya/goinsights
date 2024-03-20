@@ -1,6 +1,6 @@
 package controller
 
-import "github.com/rbnacharya/trafficinsights-go/internal/core"
+import "github.com/rbnacharya/goinsights/internal/core"
 
 type Controllers struct {
 	Global *core.Global

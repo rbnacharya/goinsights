@@ -1,7 +1,7 @@
 package validation
 
 import (
-	"github.com/rbnacharya/trafficinsights-go/internal/core/models/customer"
+	"github.com/rbnacharya/goinsights/internal/core/models/customer"
 )
 
 func (ctrl Validate) CheckCustomerExists(customerID int) bool {

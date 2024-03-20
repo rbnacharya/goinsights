@@ -1,6 +1,6 @@
 package stats
 
-import "github.com/rbnacharya/trafficinsights-go/internal/core"
+import "github.com/rbnacharya/goinsights/internal/core"
 
 type StatsInput struct {
 	CustomerID int

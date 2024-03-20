@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
-	"github.com/rbnacharya/trafficinsights-go/internal/core/models/customer"
-	"github.com/rbnacharya/trafficinsights-go/internal/errors"
+	"github.com/rbnacharya/goinsights/internal/core/models/customer"
+	"github.com/rbnacharya/goinsights/internal/errors"
 )
 
 func validateAndGenerateDates(dateStr string) (int64, int64, *errors.Booms) {

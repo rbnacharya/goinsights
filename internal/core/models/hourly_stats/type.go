@@ -1,6 +1,6 @@
 package hourlystats
 
-import "github.com/rbnacharya/trafficinsights-go/internal/core"
+import "github.com/rbnacharya/goinsights/internal/core"
 
 type HourlyStats struct {
 	RequestCount int `json:"request_count"`
