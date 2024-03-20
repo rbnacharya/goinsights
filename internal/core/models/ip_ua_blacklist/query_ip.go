@@ -10,7 +10,6 @@ func (repo IPUABlacklistRepository) FindIPBlacklistByIP(ip string) *IPBlacklist 
 	ipBlacklist := IPBlacklist{}
 	err := row.Scan(&ipBlacklist.IP)
 	if err != nil {
-		println(err.Error())
 		return nil
 	}
 

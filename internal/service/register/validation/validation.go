@@ -1,7 +1,8 @@
-package register
+package validation
 
 import (
 	"github.com/labstack/echo/v4"
+	"github.com/rbnacharya/trafficinsights-go/internal/service/register"
 )
 
 type RegisterValidation struct {
@@ -10,10 +11,11 @@ type RegisterValidation struct {
 	BindingError      bool
 	IpBlacklisted     bool
 	UaBlacklisted     bool
+	InvalidTimestamp  bool
 }
 
-func (ctrl Register) ValidateInput(ec echo.Context) (*RegisterValidation, *RegisterClickInput) {
-	input := new(RegisterClickInput)
+func (ctrl Validate) ValidateInput(ec echo.Context) (*RegisterValidation, *register.RegisterClickInput) {
+	input := new(register.RegisterClickInput)
 	validation := new(RegisterValidation)
 
 	validation.ValidationError = false
@@ -50,6 +52,14 @@ func (ctrl Register) ValidateInput(ec echo.Context) (*RegisterValidation, *Regis
 
 		if validation.IpBlacklisted || validation.UaBlacklisted {
 			validation.ValidationError = true
+		}
+	}
+
+	if !validation.ValidationError {
+		// Check timestamp is valid
+		if !ctrl.ValidateTimestamp(input.Timestamp) {
+			validation.ValidationError = true
+			validation.InvalidTimestamp = true
 		}
 	}
 

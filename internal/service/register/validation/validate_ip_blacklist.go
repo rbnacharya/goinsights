@@ -1,8 +1,8 @@
-package register
+package validation
 
 import ipuablacklist "github.com/rbnacharya/trafficinsights-go/internal/core/models/ip_ua_blacklist"
 
-func (ctrl Register) ValidateIPBlacklist(ipAddress string) bool {
+func (ctrl Validate) ValidateIPBlacklist(ipAddress string) bool {
 	// Check if IP address is in blacklist
 
 	uaIpRepo := ipuablacklist.IPUABlacklistRepository{

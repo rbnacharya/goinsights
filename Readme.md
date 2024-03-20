@@ -79,7 +79,7 @@ curl --location 'http://localhost:8080/request' \
 #### Request Constraints:
 
 - All fields are required.
-- `customerID` should already exist in the database. (By default, 1L is available. Check src/main/resources/data.sql to prepopulate data.)
+- `customerID` should already exist in the database. 
 - `timestamp` should not be after the current time and should be within 1 year from the current time.
 - If `remoteIP` or `userAgent` is blacklisted, the request will be marked as invalid.
 

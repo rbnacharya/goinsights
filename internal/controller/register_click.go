@@ -7,13 +7,13 @@ import (
 
 	hourlystats "github.com/rbnacharya/trafficinsights-go/internal/core/models/hourly_stats"
 	"github.com/rbnacharya/trafficinsights-go/internal/errors"
-	"github.com/rbnacharya/trafficinsights-go/internal/service/register"
+	"github.com/rbnacharya/trafficinsights-go/internal/service/register/validation"
 )
 
 func (ctrl Controllers) RegisterClick(ec echo.Context) error {
 	// Validate input
 
-	register := register.Register{
+	validationCtrl := validation.Validate{
 		Global: ctrl.Global,
 	}
 
@@ -21,7 +21,7 @@ func (ctrl Controllers) RegisterClick(ec echo.Context) error {
 		Global: ctrl.Global,
 	}
 
-	validation, input := register.ValidateInput(ec)
+	validation, input := validationCtrl.ValidateInput(ec)
 
 	if validation != nil && validation.ValidationError {
 		booms := errors.NewBooms()
@@ -36,8 +36,11 @@ func (ctrl Controllers) RegisterClick(ec echo.Context) error {
 			if validation.UaBlacklisted {
 				booms.AddBoom(errors.NewBoom("InvalidInput", "User-Agent is blacklisted", nil))
 			}
+			if validation.InvalidTimestamp {
+				booms.AddBoom(errors.NewBoom("InvalidInput", "Invalid timestamp", nil))
+			}
 
-			if !validation.IpBlacklisted && !validation.UaBlacklisted {
+			if !validation.IpBlacklisted && !validation.UaBlacklisted && !validation.InvalidTimestamp {
 				booms.AddBoom(errors.NewBoom("InvalidInput", "Invalid input", nil))
 			}
 			// booms.AddBoom(errors.NewBoom("InvalidInput", "Invalid input", nil))
