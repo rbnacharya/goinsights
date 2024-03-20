@@ -8,6 +8,8 @@ type RegisterValidation struct {
 	CustomerIdInvalid bool
 	ValidationError   bool
 	BindingError      bool
+	IpBlacklisted     bool
+	UaBlacklisted     bool
 }
 
 func (ctrl Register) ValidateInput(ec echo.Context) (*RegisterValidation, *RegisterClickInput) {
@@ -37,6 +39,16 @@ func (ctrl Register) ValidateInput(ec echo.Context) (*RegisterValidation, *Regis
 		// Check if customer exists
 		if !ctrl.CheckCustomerExists(input.CustomerID) {
 			validation.CustomerIdInvalid = true
+			validation.ValidationError = true
+		}
+	}
+	if !validation.ValidationError {
+		// Check if IP address is in blacklist
+		validation.IpBlacklisted = ctrl.ValidateIPBlacklist(input.RemoteIP)
+		// Check if User-Agent is in blacklist
+		validation.UaBlacklisted = ctrl.ValidateUserAgent(input.UserAgent)
+
+		if validation.IpBlacklisted || validation.UaBlacklisted {
 			validation.ValidationError = true
 		}
 	}

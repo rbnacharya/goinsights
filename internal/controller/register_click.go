@@ -6,8 +6,8 @@ import (
 	"github.com/labstack/echo/v4"
 
 	hourlystats "github.com/rbnacharya/trafficinsights-go/internal/core/models/hourly_stats"
-	"github.com/rbnacharya/trafficinsights-go/internal/core/register"
 	"github.com/rbnacharya/trafficinsights-go/internal/errors"
+	"github.com/rbnacharya/trafficinsights-go/internal/service/register"
 )
 
 func (ctrl Controllers) RegisterClick(ec echo.Context) error {
@@ -30,9 +30,20 @@ func (ctrl Controllers) RegisterClick(ec echo.Context) error {
 		} else if validation.CustomerIdInvalid {
 			booms.AddBoom(errors.NewBoom("InvalidInput", "Customer not found", nil))
 		} else {
-			booms.AddBoom(errors.NewBoom("InvalidInput", "Invalid input", nil))
+			if validation.IpBlacklisted {
+				booms.AddBoom(errors.NewBoom("InvalidInput", "IP address is blacklisted", nil))
+			}
+			if validation.UaBlacklisted {
+				booms.AddBoom(errors.NewBoom("InvalidInput", "User-Agent is blacklisted", nil))
+			}
+
+			if !validation.IpBlacklisted && !validation.UaBlacklisted {
+				booms.AddBoom(errors.NewBoom("InvalidInput", "Invalid input", nil))
+			}
+			// booms.AddBoom(errors.NewBoom("InvalidInput", "Invalid input", nil))
 			hourlyStatsRepo.AddEntry(input.CustomerID, input.Timestamp, true)
 		}
+
 		errors.HandleError(booms, ec)
 		return nil
 	}
